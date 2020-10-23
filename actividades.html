@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Cáncer Ginecológico</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Tumores Ginecológicos" />
+	<meta name="keywords" content="ginecologia, oncologia, medicina" />
+	<meta name="author" content="e-oncologia" />
+
+	<link rel="shortcut icon" type="image/png" href="images/logopeque.png" />
+
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/icomoon.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/quiz1.css" />
+	<link rel="stylesheet" href="css/grafico1A.css" />
+		<link rel="stylesheet" href="css/arrastre1.css">
+	<script src="js/modernizr-2.6.2.min.js"></script>
+
+</head>
+
+<body>
+
+	<div id="ico-page">
+		<a href="#" class="js-ico-nav-toggle ico-nav-toggle"><i></i></a>
+
+		<aside id="ico-aside" role="complementary" class="border js-fullheight" style="background-image: url(images/BGoscuro.jpg);">
+			<p><br></p>
+			<h2 id="ico-logo"><a href="index.html"><img src="images/logo.png" height="80"></a></h2>
+			<nav id="ico-main-menu" role="navigation">
+				<ul>
+					<li><a href="m1u0.html"><span class="bgdestacado2">PRESENTACIÓN</span></a></li>
+					<br>
+					<li><a href=""><span class="bgdestacado2">MÓDULO 1</span><br>TUMORES UROTERIALES</a></li>
+					<ol>
+						<li><a href="">Introducción</a></li>
+						<li><a href="">Epidemiología</a></li>
+						<li><a href="">Diagnóstico</a></li>
+						<li><a href="">Estadificación</a></li>
+						<li><a href="">Enfermedad localizada</a></li>
+						<li><a href="">Enfermedad avanzada y metastásica</a></li>
+						<li><a href="">Tto. de la enfermedad persistente</a></li>
+						<li><a href="">Recomendaciones</a></li>
+					</ol>					<br>
+					<li><a href=""><span class="bgdestacado2">MÓDULO 2</span><br>CÁNCER RENAL</a></li>
+					<br>
+					<li><a href=""><span class="bgdestacado2">MÓDULO 3</span><br>TUMORES GERMINALES</a></li>
+					<br>
+					<li><a href=""><span class="bgdestacado2">BIBLIOGRAFÍA </a></li>
+					
+				</ul>
+			</nav>
+		</aside>
+
+		<div id="ico-main">
+			<div class="ico-cabeceraVERDE">
+				<div class="ico-narrow-content animate-box">
+					<h4 class="text-center blanco">Actividades</h4>
+					<img src="images/ICONO.png" alt="" class="img-responsive centrada">
+				</div>
+			</div>
+			<div class="ico-narrow-content">
+				<div class="row animate-box" data-animate-effect="fadeInLeft">
+					<div class="col-md-12">
+						<br>
+						<br>
+						<br>
+						<h1 class="centrada verde">1</h1>	
+						<h1 class="centrada">Ejemplo test</h1>
+
+ <!-- partial:index.partial.html -->
+    <!--contenedor-->
+    <section class="contenedor">
+		<!--questionBox-->
+		<div class="questionBox" id="app">
+		  <!-- transition -->
+		  <transition
+			:duration="{ enter: 500, leave: 300 }"
+			enter-active-class="animated zoomIn"
+			leave-active-class="animated zoomOut"
+			mode="out-in"
+		  >
+			<!--qusetioncontenedor-->
+			<div
+			  class="questioncontenedor"
+			  v-if="questionIndex<quiz.questions.length"
+			  v-bind:key="questionIndex"
+			>
+			  <header>
+				<h1 class="title is-6">título</h1>
+				<!--progress-->
+				<div class="progresscontenedor">
+				  <progress
+					class="progress is-info is-small"
+					:value="(questionIndex/quiz.questions.length)*100"
+					max="100"
+				  >
+					{{(questionIndex/quiz.questions.length)*100}}%
+				  </progress>
+				  <p>{{(questionIndex/quiz.questions.length)*100}}% completado</p>
+				</div>
+				<!--/progress-->
+			  </header>
+  
+			  <!-- questionTitle -->
+			  <h2 class="titlecontenedor title">
+				{{ quiz.questions[questionIndex].text }}
+			  </h2>
+  
+			  <!-- quizOptions -->
+			  <div class="optioncontenedor">
+				<div
+				  class="option"
+				  v-for="(response, index) in quiz.questions[questionIndex].responses"
+				  @click="selectOption(index)"
+				  :class="{ 'is-selected': userResponses[questionIndex] == index}"
+				  :key="index"
+				>
+				  {{ index | charIndex }}. {{ response.text }}
+				</div>
+			  </div>
+  
+			  <!--quizFooter: navigation and progress-->
+			  <footer class="questionFooter">
+				<!--pagination-->
+				<nav class="pagination" role="navigation" aria-label="pagination">
+				  <!-- back button -->
+				  <a
+					class="button"
+					v-on:click="prev();"
+					:disabled="questionIndex < 1"
+				  >
+					atrás
+				  </a>
+  
+				  <!-- next button -->
+				  <a
+					class="button"
+					:class="(userResponses[questionIndex]==null)?'':'is-active'"
+					v-on:click="next();"
+					:disabled="questionIndex>=quiz.questions.length"
+				  >
+					{{ (userResponses[questionIndex]==null)?'saltar':'siguiente' }}
+				  </a>
+				</nav>
+				<!--/pagination-->
+			  </footer>
+			  <!--/quizFooter-->
+			</div>
+			<!--/questioncontenedor-->
+  
+			<!--quizCompletedResult-->
+			<div
+			  v-if="questionIndex >= quiz.questions.length"
+			  v-bind:key="questionIndex"
+			  class="quizCompleted has-text-centered"
+			>
+			  <!-- quizCompletedIcon: Achievement Icon -->
+			  <span class="icon">
+				<i
+				  class="fa"
+				  :class="score()>3?'fa-check-circle-o is-active':'fa-times-circle'"
+				></i>
+			  </span>
+  
+			  <!--resultTitleBlock-->
+			  <h2 class="title">
+				You did {{ (score()>7?'an amazing':(score()<4?'a poor':'a good'))
+				}} job!
+			  </h2>
+			  <p class="subtitle">
+				Total score: {{ score() }} / {{ quiz.questions.length }}
+			  </p>
+			  <br />
+			  <a class="button" @click="restart()"
+				>restart <i class="fa fa-refresh"></i
+			  ></a>
+			  <!--/resultTitleBlock-->
+			</div>
+			<!--/quizCompetedResult-->
+		  </transition>
+		</div>
+		<!--/questionBox-->
+	  </section>
+	  <!--/contenedor-->
+	  <!-- partial -->
+			</div>
+		</div>
+	</div>
+	<div class="ico-narrow-content">
+		<div class="row animate-box" data-animate-effect="fadeInLeft">
+			<div class="col-md-12">
+				<br>
+				<br>
+				
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				
+				<br>
+				<br>
+				<br>
+				<br>
+			</div>
+		</div>
+	</div>
+	<div class="ico-narrow-content">
+		<div class="row animate-box" data-animate-effect="fadeInLeft">
+			<div class="col-md-12">
+				<h1 class="centrada verde">2</h1>	
+
+				<h1 class="centrada">Ilustración interactiva</h1>
+				<p class="centrada">Haz click en los botones para ampliar información sobre la imagen</p>
+
+					<div class="col-md-6 info">
+						<div class="row">
+						<div class="col-md-12">
+						  <div id="content-1" class="info-card card">
+							
+							<div class="card-section">
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+							</div>
+						  </div>
+						  <div id="content-2" class="info-card card">
+							<div class="card-section">
+								<p>Esse dolores culpa ipsam voluptatum dolorum iusto recusandae velit natus. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+							</div>
+						  </div>
+						  <div id="content-3" class="info-card card">
+							
+							<div class="card-section">
+								<p>Ipsam voluptatum dolorum iusto recusandae velit natus esse dolores culpa. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+							</div>
+						  </div>
+						  <div id="content-4" class="info-card card">
+						
+							<div class="card-section">
+								<p>
+									Architecto eos lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+								</div>
+						  </div>
+						</div>
+					  </div>
+					</div>
+					<div class="col-md-6">
+					  <div id="map">
+						<img src="images/grafico1.png" />
+					  </div>
+					  <div id="coords" style="display: none">
+						<div
+						  data-x="30%"
+						  data-y="30%"
+						  data-target="#content-1"
+						  class="dot"
+						></div>
+						<div
+						  data-x="18%"
+						  data-y="28%"
+						  data-target="#content-2"
+						  class="dot"
+						></div>
+						<div
+						  data-x="60%"
+						  data-y="50%"
+						  data-target="#content-3"
+						  class="dot"
+						></div>
+						<div
+						  data-x="40%"
+						  data-y="60%"
+						  data-target="#content-4"
+						  class="dot"
+						></div>
+					  </div>
+					</div>
+			</div>
+		</div>
+	</div>
+	<div class="ico-narrow-content">
+		<div class="row animate-box" data-animate-effect="fadeInLeft">
+			<div class="col-md-12">
+				<br>
+				<br>
+				
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				
+				<br>
+				<br>
+				<br>
+				<br>
+			</div>
+		</div>
+	</div>
+	<div class="ico-narrow-content">
+		<div class="row animate-box" data-animate-effect="fadeInLeft">
+			<div class="col-md-12">
+				<h1 class="centrada verde">3</h1>	
+
+				<h1 class="centrada">Ilustración test</h1>
+					<p class="centrada">Arrastra cada elemento hacia su lugar correcto</p>
+					<br>
+					<br>
+				<div class="centrada content page">
+					
+					<div class="quiz-wrapper">
+						<ul class="options">
+						  <li class="title">elementos:</li>
+						  <li class="option">incididunt</li>
+						  <li class="option">nostrud</li>
+						  <li class="option">lorem</li>
+						  <li class="option">eiusmod</li>
+						</ul>
+						<div class="answers">
+						  <span class="target 2 lorem">2</span>
+						  <span class="target 4 nostrud">4</span>
+						  <span class="target 1 eiusmod">1</span>
+						  
+						  <span class="target 3 incididunt">3</span>
+						</div>
+					</div>
+					<div class="lightbox-bg"></div>
+					<div class="status confirm">
+					  <p>¡Correcto!</p>
+					</div>
+					<div class="status deny">
+					  <p>Tienes varios errores</p>
+					</div>
+				  </div>
+			</div>
+		</div>
+	</div>
+	<div class="ico-narrow-content">
+		<div class="row animate-box" data-animate-effect="fadeInLeft">
+			<div class="col-md-12">
+				<br>
+				<br>
+				
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				
+				<br>
+				<br>
+				<br>
+				<br>
+			</div>
+		</div>
+	</div>
+
+<!-- jQuery -->
+	<script src="js/grafico1B.js"></script>
+    <script src="js/grafico1A.js"></script>
+	<script src="js/quiz1A.js"></script>
+	<script src="js/quiz1.js"></script>
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Carousel -->
+		<!-- arrastre -->
+		<script  src="js/arrastre3.js"></script>
+		<script  src="js/arrastre2.js"></script>
+		<script  src="js/arrastre1.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<!-- Stellar -->
+	
+	<script src="js/jquery.stellar.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Counters -->
+	<script src="js/jquery.countTo.js"></script>
+	<!-- MAIN JS -->
+	<script src="js/main.js"></script>
+	<!-- partial -->
+	<script src="js/diagrama2.js"></script>
+	<script src="js/scriptdiagram.js"></script>
+
+</body>
+
+</html>
